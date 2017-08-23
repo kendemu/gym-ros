@@ -1,6 +1,9 @@
 # gym-ros  
 A gym environment for ROS.  
 
+# Installation  
+```sudo pip install --upgrade .```  
+
 ## Supported Environments  
 1. Robot in real life  
 2. Gazebo  

@@ -9,25 +9,25 @@ from gym.utils import seeding
 from cv_bridge import CvBridge, CvBridgeError
 
 class ROSEnv(gym.Env):
-    metadata= {'render.modes' : ['human'])
+    metadata= {'render.modes' : ['human']}
 
     def __init__(self):
         ##establish connection to ROS.
         rospy.init_node("gym-ros")
         self.vel_pub = rospy.Publisher("/mobile_base/commands/velocity", Twist, queue_size=10)
         self.img_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.imgCb)
-        self.collide_sub = rospy.Subscriber("/collide", Bool, self.collideCb)
+        self.collide_sub = rospy.Subscriber("/collided", Bool, self.collideCb)
         self.image = ""
         self.bridge = CvBridge()
         self.isCollided = False
         
         #TODO : setup observation dementions and action space demention via parameter server
-        self.max_speed = rospy.get_param("max_speed")
-        self.width = rospy.get_param("width")
-        self.height = rospy.get_param("height")
+        self.max_speed = 0.7
+        self.width = 640
+        self.height = 480
         
-        self.observations = spaces.Box(low=0, high=255, shape(self.width, self.height))
-        self.action_space = spaces.Box(low=-self.max_speed, high=self.max_speed, shape=(3,2))
+        self.observations = spaces.Box(low=0, high=255, shape=(self.width, self.height))
+        self.action_space = spaces.Box(low=-self.max_speed, high=self.max_speed, shape=(2,3))
  
 
         
@@ -44,6 +44,7 @@ class ROSEnv(gym.Env):
             
     def _step(self, action):
         cmd_vel = Twist()
+        print action
         cmd_vel.linear.x = action[0][0]
         cmd_vel.linear.y = action[0][1]
         cmd_vel.linear.z  =action[0][2]
@@ -54,7 +55,7 @@ class ROSEnv(gym.Env):
         reward = self._get_reward()
         self.observations = self.image
         done = True if reward is -1 else False
-        return ob, reward, done, {}
+        return (self.image, reward, done, {})
 
     def _reset(self):
         pass

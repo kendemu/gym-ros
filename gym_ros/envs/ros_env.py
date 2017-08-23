@@ -17,7 +17,7 @@ class ROSEnv(gym.Env):
         self.vel_pub = rospy.Publisher("/mobile_base/commands/velocity", Twist, queue_size=10)
         self.img_sub = rospy.Subscriber("/camera/rgb/image_raw", Image, self.imgCb)
         self.collide_sub = rospy.Subscriber("/collided", Bool, self.collideCb)
-        self.image = ""
+        self.image = None
         self.bridge = CvBridge()
         self.isCollided = False
         
@@ -34,7 +34,7 @@ class ROSEnv(gym.Env):
     def imgCb(self, msg):
         #convert Image to numpy array
         try:
-            self.image = self.bridge.imgmsgs_to_cv2(data, "bgr8")
+            self.image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
         except CvBridgeError as e:
             print e
 

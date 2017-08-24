@@ -30,4 +30,6 @@ Tested.
 1. Robot in real life  
 Robot in real life cannot be reset like a game.  
 2. SIGVerse  
-Resetting in the SIGVerse environment causes 10 seconds to re-establish connections. This problem causes overhead of training.  
+Resetting in the SIGVerse environment causes 10 seconds to re-establish connections. This problem causes overhead of training. So currently environment reset is not supported. Will be supported on future release.  
+
+## Future 

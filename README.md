@@ -9,11 +9,18 @@ A gym environment for ROS.
 Using RGB camera for observations, cmd_vel for actions.
 LIDAR, RGB-D sensor support will be on future release.
 Will support Drones, Pepper, and Happy Mini on future release.
+  
+  
+## Supported Types  
+1. sensor_msgs/Image <-> 3D tensor numpy array  
+2. geometry_msgs/Twist <-> SE(3) numpy array  
+3. std_msgs/Bool <-> 0 - 1 fuzzy set value(float)  
 
 ## What you need to support your robot
 1. Define the reward.   
 What is your reward? On default, I set the reward as the collision.  
 When robot collide something, game over.  
+Also, you need something to detect the reward. If you can't observe the reward, you have to make your algorithm to POMDP.  
 2. Make your Agent.  
 Make your agent. DQN, DQRN, CNN, PID Control, Rule-based AI, etc.....  
 OpenAI Gym is just a environment for agent system, it doesn't provide A.I. algorithm.  

@@ -1,0 +1,15 @@
+BIn filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse-DRONE_Data filter=lfs diff=lfs merge=lfs -text
+Bin/TurtlebotFollower.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/TurtlebotFollower_Data filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse_T.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse-DRONE.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse-DRON_Data filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse_T_Data filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse-DRON.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse.log filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerseConfig filter=lfs diff=lfs merge=lfs -text
+Bin/SIGVerse_Data filter=lfs diff=lfs merge=lfs -text
+Bin/TurtlebotTeleop.x86_64 filter=lfs diff=lfs merge=lfs -text
+Bin/TurtlebotTeleop_Data filter=lfs diff=lfs merge=lfs -text

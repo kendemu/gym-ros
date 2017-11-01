@@ -9,7 +9,10 @@ A gym environment for ROS.
 Using RGB camera for observations, cmd_vel for actions.
 LIDAR, RGB-D sensor support will be on future release.
 Will support Drones, Pepper, and Happy Mini on future release.
-  
+
+## Usage  
+```import gym```  
+```import gym_ros```  
   
 ## Supported Types  
 1. sensor_msgs/Image <-> 3D tensor numpy array  
@@ -32,6 +35,13 @@ OpenAI Gym is just a environment for agent system, it doesn't provide A.I. algor
 Not tested, but it will work because Gazebo is on ROS.
 3. SIGVerse  
 Tested.
+  
+## How to run SIGVerse  
+1. roscore  
+2. roslaunch rosbridge_server rosbridge_websocket.launch  
+3. rosrun sigverse_ros_bridge sigverse_ros_bridge  
+4. execute your python program using gym.  
+Go to SIGVerse Wiki to get sigverse_ros_bridge program.  
 
 ## About the reset functionalities  
 1. Robot in real life  
@@ -43,5 +53,4 @@ Resetting in the SIGVerse environment causes 10 seconds to re-establish connecti
 1. Adding multiple environment
 Turtlebot, A.R. Drone 2.0, Pepper, Happy Mini  
 2. Adding reconfigurable APIs
-
 

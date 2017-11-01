@@ -8,6 +8,7 @@ import gym
 from gym import error, spaces, utils
 from gym.utils import seeding
 from cv_bridge import CvBridge, CvBridgeError
+import numpy as np
 
 class ROSEnv(gym.Env):
     metadata= {'render.modes' : ['human']}
@@ -28,10 +29,12 @@ class ROSEnv(gym.Env):
         self.max_speed = 2.0
         self.width = 640
         self.height = 480
+
+        self.observations = np.zeros((self.width, self.height, 3))
+
         
-        self.observations = spaces.Box(low=0, high=255, shape=(self.width, self.height))
-        self.action_space = spaces.Box(low=-self.max_speed, high=self.max_speed, shape=(2,3))
- 
+        #self.observations = spaces.Box(low=0, high=255, shape=(self.width, self.height))
+        self.action_space = spaces.Box(low=-self.max_speed, high=self.max_speed, shape=(6,))
 
         
     def imgCb(self, msg):
@@ -52,18 +55,22 @@ class ROSEnv(gym.Env):
             rospy.sleep(1)
 
         cmd_vel = Twist()
-        cmd_vel.linear.x = action[0][0]
-        cmd_vel.linear.y = action[0][1]
-        cmd_vel.linear.z  =action[0][2]
-        cmd_vel.angular.x = action[1][0]
-        cmd_vel.angular.y = action[1][1]
-        cmd_vel.angular.z = action[1][2]
+        print action
+        cmd_vel.linear.x = action[0]
+        cmd_vel.linear.y = action[1]
+        cmd_vel.linear.z  =action[2]
+        cmd_vel.angular.x = action[3]
+        cmd_vel.angular.y = action[4]
+        cmd_vel.angular.z = action[5]
         self.vel_pub.publish(cmd_vel)        
         reward = self._get_reward()
-        self.observations = self.image
+        if self.image is not None:
+            self.observations = self.image
+            
+            
         done = True if self.isCollided else False
         rospy.sleep(0.033)
-        return (self.image, reward, done, {})
+        return (self.observations, reward, done, {})
 
     def _reset(self):
         if self.viewer is None:

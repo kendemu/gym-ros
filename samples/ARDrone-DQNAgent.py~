@@ -18,9 +18,7 @@ total = 0.0
 for _ in range(100000):
     env.render()
     pbar.update(1)
-    print env.action_space.sample()
     ob, reward, done, _ =   env.step(env.action_space.sample())
-    print ob.shape
     total += reward
     if done:
         print "Game Over!!"

@@ -47,8 +47,7 @@ Go to SIGVerse Wiki to get sigverse_ros_bridge program.
 1. Robot in real life  
 Robot in real life cannot be reset like a game.  
 2. SIGVerse  
-Resetting in the SIGVerse environment causes 10 seconds to re-establish connections. This problem causes overhead of training. So currently environment reset is not supported. Will be supported on future release.  
-
+Resetting in the SIGVerse environment causes 10 seconds to re-establish connections.   
 ## Future
 1. Adding multiple environment
 Turtlebot, A.R. Drone 2.0, Pepper, Happy Mini  
